@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Shipment | SCMXpertLite</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">SC</div>
+                <div class="sidebar-title">SCMXpertLite</div>
+            </div>
+            <nav class="sidebar-nav">
+  <ul>
+    {% if user.role == "admin" %}
+      <li><a href="/admin/dashboard"><i class="fas fa-th-large"></i> <span>Dashboard</span></a></li>
+      <li><a href="/shipment/create" class="active"><i class="fas fa-truck"></i> <span>Create Shipment</span></a></li>
+      <li><a href="/shipment/manage"><i class="fas fa-edit"></i> <span>Manage Shipments</span></a></li>
+      <li><a href="/device/device-data-page"><i class="fas fa-microchip"></i> <span>Device Data</span></a></li>
+      <li><a href="/admin/users"><i class="fas fa-users"></i> <span>Manage Users</span></a></li>
+      <li><a href="/admin/edit-user"><i class="fas fa-user-tag"></i> <span>Update User Roles</span></a></li>
+    {% else %}
+      <li><a href="/user/dashboard"><i class="fas fa-th-large"></i> <span>Dashboard</span></a></li>
+      <li><a href="/shipment/create" class="active"><i class="fas fa-truck"></i> <span>Create Shipment</span></a></li>
+      <li><a href="/user/info"><i class="fas fa-user-circle"></i> <span>View Profile</span></a></li>
+    {% endif %}
+  </ul>
+</nav>
+
+            <div class="sidebar-logout">
+                <form action="/auth/logout" method="get">
+                    <button type="submit"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                </form>
+            </div>
+        </aside>
+
+        <main class="main-content">
+
+            <header class="main-header">
+                <h1>Create New Shipment</h1>
+            </header>
+            
+            {% if request.query_params.get("msg") %}
+              <div class="alert success">
+                {{ request.query_params.get("msg") }}
+              </div>
+            {% endif %}
+
+            <div class="form-container">
+                <h2>Shipment Details</h2>
+                <form action="/shipment/shipment" method="post">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="shipmentNumber">Shipment Number</label>
+                            <input type="text" id="shipmentNumber" name="shipmentNumber" placeholder="e.g., SH-12345">
+                        </div>
+                        <div class="form-group">
+                            <label for="routeDetails">Route Details</label>
+                            <input type="text" id="routeDetails" name="routeDetails" placeholder="e.g., Warehouse A to Hub B">
+                        </div>
+                        <div class="form-group">
+                            <label for="device">Device</label>
+                            <input type="text" id="device" name="device" placeholder="e.g., GPS-007">
+                        </div>
+                        <div class="form-group">
+                            <label for="poNumber">PO Number</label>
+                            <input type="text" id="poNumber" name="poNumber" placeholder="e.g., PO-9876">
+                        </div>
+                        <div class="form-group">
+                            <label for="ndcNumber">NDC Number</label>
+                            <input type="text" id="ndcNumber" name="ndcNumber" placeholder="Enter NDC number">
+                        </div>
+                        <div class="form-group">
+                            <label for="serialNumberOfGoods">Serial Number</label>
+                            <input type="text" id="serialNumberOfGoods" name="serialNumberOfGoods" placeholder="Enter serial number">
+                        </div>
+                        <div class="form-group">
+                            <label for="containerNumber">Container Number</label>
+                            <input type="text" id="containerNumber" name="containerNumber" placeholder="Enter containerNumber">
+                        </div>
+                        <div class="form-group">
+                            <label for="goodsType">Goods Type</label>
+                            <input type="text" id="goodsType" name="goodsType" placeholder="e.g., Medicines, Electronics">
+                        </div>
+                        <div class="form-group">
+                            <label for="expectedDeliveryDate">Expected Delivery Date</label>
+                            <input type="date" id="expectedDeliveryDate" name="expectedDeliveryDate">
+                        </div>
+                        <div class="form-group">
+                            <label for="deliveryNumber">Delivery Number</label>
+                            <input type="text" id="deliveryNumber" name="deliveryNumber" placeholder="Enter deliveryNumber">
+                        </div>
+                        <div class="form-group">
+                            <label for="batchNumber">Batch Number</label>
+                            <input type="text" id="batchNumber" name="batchNumber" placeholder="Enter batch number">
+                        </div>
+                        <div class="form-group">
+                            <label for="shipmentDescription">Shipment Description</label>
+                            <input type="text" id="shipmentDescription" name="shipmentDescription" placeholder="Enter a brief description of the shipment">
+                        </div>
+                        <button type="submit">Create Shipment</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

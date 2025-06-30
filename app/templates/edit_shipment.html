@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Shipment | SCMXpertLite</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">SC</div>
+        <div class="sidebar-title">SCMXpertLite</div>
+      </div>
+      <nav class="sidebar-nav">
+        <ul>
+            <li><a href="/admin/dashboard"><i class="fas fa-th-large"></i> <span>Dashboard</span></a></li>
+            <li><a href="/shipment/create"><i class="fas fa-truck"></i> <span>Create Shipment</span></a></li>
+            <li><a href="/shipment/manage" class="active"><i class="fas fa-edit"></i> <span>Manage Shipments</span></a></li>
+            <li><a href="/device/device-data-page"><i class="fas fa-microchip"></i> <span>Device Data</span></a></li>
+            <li><a href="/admin/users"><i class="fas fa-users"></i> <span>Manage Users</span></a></li>
+            <li><a href="/admin/edit-user"><i class="fas fa-user-tag"></i> <span>Update User Roles</span></a></li>
+        </ul>
+      </nav>
+      <div class="sidebar-logout">
+        <form action="/auth/logout" method="get">
+          <button type="submit"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </form>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="main-header">
+        <h1>Edit Shipment</h1>
+      </header>
+
+      <section class="form-container">
+        <h2>Editing Shipment: {{ shipment.shipmentNumber }}</h2>
+        <form action="/shipment/edit/{{ shipment_id }}" method="post">
+          <div class="form-grid">
+              <div class="form-group">
+                <label for="shipmentNumber">Shipment Number:</label>
+                <input type="text" id="shipmentNumber" name="shipmentNumber" value="{{ shipment.shipmentNumber }}">
+              </div>
+              <div class="form-group">
+                <label for="routeDetails">Route Details:</label>
+                <input type="text" id="routeDetails" name="routeDetails" value="{{ shipment.routeDetails }}">
+              </div>
+              <div class="form-group">
+                <label for="device">Device:</label>
+                <input type="text" id="device" name="device" value="{{ shipment.device }}">
+              </div>
+              <div class="form-group">
+                <label for="poNumber">PO Number:</label>
+                <input type="text" id="poNumber" name="poNumber" value="{{ shipment.poNumber }}">
+              </div>
+              <div class="form-group">
+                <label for="ndcNumber">NDC Number:</label>
+                <input type="text" id="ndcNumber" name="ndcNumber" value="{{ shipment.ndcNumber }}">
+              </div>
+              <div class="form-group">
+                <label for="serialNumberOfGoods">Serial Number:</label>
+                <input type="text" id="serialNumberOfGoods" name="serialNumberOfGoods" value="{{ shipment.serialNumberOfGoods }}">
+              </div>
+              <div class="form-group">
+                <label for="containerNumber">Container Number:</label>
+                <input type="text" id="containerNumber" name="containerNumber" value="{{ shipment.containerNumber }}">
+              </div>
+              <div class="form-group">
+                <label for="goodsType">Goods Type:</label>
+                <input type="text" id="goodsType" name="goodsType" value="{{ shipment.goodsType }}">
+              </div>
+              <div class="form-group">
+                <label for="expectedDeliveryDate">Expected Delivery:</label>
+                <input type="text" id="expectedDeliveryDate" name="expectedDeliveryDate" value="{{ shipment.expectedDeliveryDate }}">
+              </div>
+              <div class="form-group">
+                <label for="deliveryNumber">Delivery Number:</label>
+                <input type="text" id="deliveryNumber" name="deliveryNumber" value="{{ shipment.deliveryNumber }}">
+              </div>
+              <div class="form-group">
+                <label for="batchNumber">Batch Number:</label>
+                <input type="text" id="batchNumber" name="batchNumber" value="{{ shipment.batchNumber }}">
+              </div>
+              <div class="form-group">
+                <label for="shipmentDescription">Description:</label>
+                <input type="text" id="shipmentDescription" name="shipmentDescription" value="{{ shipment.shipmentDescription }}">
+              </div>
+              <button type="submit">Update Shipment</button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,5 @@
+FROM python:3.12-slim
+WORKDIR /app
+COPY kafka_env/ kafka_env/
+RUN pip install kafka-python pymongo python-dotenv
+CMD ["python", "kafka_env/consumer.py"]

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard | SCMXpertLite</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">SC</div>
+        <div class="sidebar-title">SCMXpertLite</div>
+      </div>
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="/user/dashboard" class="active"><i class="fas fa-th-large"></i> <span>Dashboard</span></a></li>
+          <li><a href="/shipment/create"><i class="fas fa-truck"></i> <span>Create Shipment</span></a></li>
+          <li><a href="/user/info"><i class="fas fa-user-circle"></i> <span>View Profile</span></a></li>
+        </ul>
+      </nav>
+      <div class="sidebar-logout">
+        <form action="/auth/logout" method="get">
+          <button type="submit"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </form>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="main-header">
+        <h1>Welcome, {{ user.sub }}</h1>
+      </header>
+      {% if request.query_params.get("msg") %}
+         <div class="alert success">
+      {{ request.query_params.get("msg") }}
+         </div>
+     {% endif %}
+      <section class="dashboard-sections">
+        <div class="section-card">
+          <div class="card-icon" style="font-size: 2em; color: var(--primary-blue); margin-bottom: var(--spacing-md);"><i class="fas fa-truck-moving"></i></div>
+          <h3>Create New Shipment</h3>
+          <p>Initiate a new shipment by providing all necessary details to get your goods moving.</p>
+          <a href="/shipment/create" class="button">Create Shipment <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="section-card">
+          <div class="card-icon" style="font-size: 2em; color: var(--primary-blue); margin-bottom: var(--spacing-md);"><i class="fas fa-user-circle"></i></div>
+          <h3>View Your Profile</h3>
+          <p>Access and review your personal account information and user details.</p>
+          <a href="/user/info" class="button">View Profile <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

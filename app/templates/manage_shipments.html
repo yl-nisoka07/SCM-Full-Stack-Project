@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Shipments | SCMXpertLite</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">SC</div>
+        <div class="sidebar-title">SCMXpertLite</div>
+      </div>
+      <nav class="sidebar-nav">
+        <ul>
+            <li><a href="/admin/dashboard"><i class="fas fa-th-large"></i> <span>Dashboard</span></a></li>
+            <li><a href="/shipment/create"><i class="fas fa-truck"></i> <span>Create Shipment</span></a></li>
+            <li><a href="/shipment/manage" class="active"><i class="fas fa-edit"></i> <span>Manage Shipments</span></a></li>
+            <li><a href="/device/device-data-page"><i class="fas fa-microchip"></i> <span>Device Data</span></a></li>
+            <li><a href="/admin/users"><i class="fas fa-users"></i> <span>Manage Users</span></a></li>
+            <li><a href="/admin/edit-user"><i class="fas fa-user-tag"></i> <span>Update User Roles</span></a></li>
+        </ul>
+      </nav>
+      <div class="sidebar-logout">
+        <form action="/auth/logout" method="get">
+          <button type="submit"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </form>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="main-header">
+        <h1>Manage Shipments</h1>
+      </header>
+      {% if msg %}
+        <div class="success-message" style="color: green; margin-bottom: 1em;">
+      {{ msg }}
+        </div>
+      {% endif %}
+      <section class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Shipment Number</th>
+              <th>Route</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for shipment in shipments %}
+            <tr>
+              <td>{{ shipment.shipmentNumber }}</td>
+              <td>{{ shipment.routeDetails }}</td>
+              <td><a href="/shipment/edit/{{ shipment._id }}" class="action-button">Edit</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
