@@ -91,8 +91,6 @@ async def signup(
     password_error = validate_password(password)
     if password_error:
         return templates.TemplateResponse("signup.html", {"request": request,"error": password_error})
-        
-
     hashed_pw = pwd_context.hash(password)
     await db.users.insert_one({"username": username, "email": email, "password": hashed_pw, "role": "user"})
     return RedirectResponse(url="/auth/login?msg=Account created successfully. Please login.", status_code=303)
