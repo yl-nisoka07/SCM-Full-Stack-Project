@@ -29,6 +29,35 @@ async def view_device_data_page(request: Request, user=Depends(is_admin)):
     data = await db.device_data.find().to_list(None)
     return templates.TemplateResponse("device_data.html", {"request": request, "device_data": data})
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @router.websocket("/ws/device-stream")
 async def device_data_stream(websocket: WebSocket):
     await websocket.accept()
