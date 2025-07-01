@@ -46,6 +46,7 @@
             <tr>
               <th>Shipment Number</th>
               <th>Route</th>
+              <th>Created By</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -54,6 +55,7 @@
             <tr>
               <td>{{ shipment.shipmentNumber }}</td>
               <td>{{ shipment.routeDetails }}</td>
+              <td>{{ shipment.createdBy or 'N/A' }}</td>
               <td><a href="/shipment/edit/{{ shipment._id }}" class="action-button">Edit</a></td>
             </tr>
             {% endfor %}
