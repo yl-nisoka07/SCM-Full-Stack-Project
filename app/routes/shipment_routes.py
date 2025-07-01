@@ -39,8 +39,12 @@ async def create_shipment(request: Request, user=Depends(get_current_user),
         expectedDeliveryDate=expectedDeliveryDate, deliveryNumber=deliveryNumber,
         batchNumber=batchNumber, shipmentDescription=shipmentDescription
     ) 
+    
+    # Add the creator's username to the shipment data
+    shipment_data = shipment.model_dump()
+    shipment_data["createdBy"] = user.get("sub") # 'sub' typically holds the username from the token
 
-    await db.shipments.insert_one(shipment.model_dump()) 
+    await db.shipments.insert_one(shipment_data) 
     
     redirect_url = "/admin/dashboard" if user["role"] == "admin" else "/user/dashboard" 
     return RedirectResponse(url=f"{redirect_url}?msg=Shipment+created+successfully",status_code=303) 
