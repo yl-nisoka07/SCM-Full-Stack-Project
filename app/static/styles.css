@@ -575,3 +575,88 @@ a:hover {
     border-radius: 5px;
     font-weight: bold;
 }
+
+/* Add these styles to your existing styles.css file */
+
+/* Device Data Page Specific Styles */
+.device-filter-section {
+    margin-bottom: var(--spacing-xl);
+}
+
+.device-filter-section .form-group {
+    max-width: 400px; /* Increased from 300px */
+}
+
+/* Table column width adjustments for device data */
+.device-data-table {
+    width: 100%;
+    table-layout: fixed; /* Ensures consistent column widths */
+}
+
+.device-data-table th:nth-child(1), /* Device ID */
+.device-data-table td:nth-child(1) {
+    width: 12%;
+    min-width: 120px;
+}
+
+.device-data-table th:nth-child(2), /* Battery */
+.device-data-table td:nth-child(2) {
+    width: 10%;
+    min-width: 80px;
+}
+
+.device-data-table th:nth-child(3), /* Temperature */
+.device-data-table td:nth-child(3) {
+    width: 12%;
+    min-width: 100px;
+}
+
+.device-data-table th:nth-child(4), /* Route From */
+.device-data-table td:nth-child(4) {
+    width: 20%;
+    min-width: 140px;
+}
+
+.device-data-table th:nth-child(5), /* Route To */
+.device-data-table td:nth-child(5) {
+    width: 20%;
+    min-width: 140px;
+}
+
+.device-data-table th:nth-child(6), /* Timestamp */
+.device-data-table td:nth-child(6) {
+    width: 26%;
+    min-width: 180px;
+}
+
+/* Improved text wrapping for table cells */
+.device-data-table td {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Auto-refresh indicator styling */
+.auto-refresh-indicator {
+    margin-left: auto;
+    color: var(--text-light);
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+/* Responsive adjustments for device data table */
+@media (max-width: 768px) {
+    .device-filter-section .form-group {
+        max-width: 100%;
+    }
+    
+    .device-data-table {
+        font-size: 0.9em;
+    }
+    
+    .device-data-table th,
+    .device-data-table td {
+        padding: var(--spacing-sm);
+    }
+}
