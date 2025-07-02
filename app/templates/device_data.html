@@ -32,15 +32,20 @@
     </aside>
 
     <main class="main-content">
-      <header class="main-header">
-        <h1>Device Data Stream</h1>
-      </header>
+<!-- Replace the header and filter sections in your device_data.html with this -->
 
-      <!-- Filter Section -->
-      <!-- Filter Section -->
-<section class="form-container" style="margin-bottom: 24px;">
+<header class="main-header">
+  <h1>Device Data Stream</h1>
+  <div class="auto-refresh-indicator">
+    <i class="fas fa-sync-alt"></i>
+    <span>Auto-refreshing every 10 seconds</span>
+  </div>
+</header>
+
+<!-- Filter Section -->
+<section class="form-container device-filter-section">
   <form method="get" action="/device/device-data-page">
-    <div class="form-group" style="max-width: 300px;">
+    <div class="form-group">
       <label for="device_id">Filter by Device ID (leave empty for all):</label>
       <input 
         type="text" 
@@ -48,40 +53,54 @@
         id="device_id" 
         placeholder="Enter Device ID"
         value="{{ selected_device if selected_device else '' }}"
-        style="width: 100%; padding: 16px; border-radius: 6px; border: 1px solid #E0E8F0; font-size: 1em;"
       />
     </div>
-    <button type="submit" style="margin-top: 16px;">Apply Filter</button>
+    <button type="submit">Apply Filter</button>
   </form>
 </section>
 
-      <section class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Device ID</th>
-              <th>Battery</th>
-              <th>Temperature</th>
-              <th>Route From</th>
-              <th>Route To</th>
-              <th>Timestamp</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for item in device_data %}
-            <tr>
-              <td>{{ item.device_id }}</td>
-              <td>{{ item.battery_level }}</td>
-              <td>{{ item.sensor_temperature }}°C</td>
-              <td>{{ item.route_from }}</td>
-              <td>{{ item.route_to }}</td>
-              <td>{{ item.timestamp }}</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </section>
-    </main>
-  </div>
+<!-- Table Section -->
+<section class="table-container">
+  <table class="device-data-table">
+    <thead>
+      <tr>
+        <th>Device ID</th>
+        <th>Battery</th>
+        <th>Temperature</th>
+        <th>Route From</th>
+        <th>Route To</th>
+        <th>Timestamp</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in device_data %}
+      <tr>
+        <td>{{ item.device_id }}</td>
+        <td>{{ item.battery_level }}</td>
+        <td>{{ item.sensor_temperature }}°C</td>
+        <td>{{ item.route_from }}</td>
+        <td>{{ item.route_to }}</td>
+        <td>{{ item.timestamp }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+  <!-- Auto-refresh script -->
+  <script>
+    // Auto-refresh the page every 10 seconds to show new device data
+    setTimeout(() => {
+        window.location.reload();
+    }, 10000); // 10000 milliseconds = 10 seconds
+    
+    // Optional: Show a countdown timer
+    let countdown = 10;
+    setInterval(() => {
+        countdown--;
+        if (countdown <= 0) {
+            countdown = 10; // Reset countdown
+        }
+    }, 1000);
+  </script>
 </body>
 </html>
